@@ -1,0 +1,26 @@
+
+[ DATA BASE ]
+
+CREATE DATABASE CITIZENSERVICESPORTAL
+
+----------------------------------------
+
+CREATE TABLE users (
+
+	userid INTEGER PRIMARY KEY,
+	firstname VARCHAR(100) NOT NULL,
+	middlename VARCHAR(100) NOT NULL,
+	lastname VARCHAR(100) NOT NULL,
+	dateofbirth DATE,
+	mobilenumber BIGINT(10) UNIQUE NOT NULL,
+	pincode VARCHAR(6) NOT NULL,
+	aadharnumber VARCHAR(12) UNIQUE NOT NULL,
+	emailid VARCHAR(100),
+	password VARCHAR(300) -- hashed password
+
+)
+
+INSERT INTO users VALUES (1, "saurabh","sharad","patil", "02-10-1999", "9834022964", "443101", "123456789987", "saurabhsaptil541@gmail.com", "1234")
+
+---------------------------------------------
+
