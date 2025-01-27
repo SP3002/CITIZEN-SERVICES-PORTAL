@@ -24,3 +24,43 @@ INSERT INTO users VALUES (1, "saurabh","sharad","patil", "02-10-1999", "98340229
 
 ---------------------------------------------
 
+CREATE TABLE SCHEMES (
+    schemeid INTEGER PRIMARY KEY,
+    schemename VARCHAR(500),
+    department VARCHAR(200), 
+    eligibility VARCHAR(700),
+    date_implemented DATE,
+    scheme_description TEXT,
+    target_audience VARCHAR(500),
+    budget_allocation DECIMAL(15,2),
+    status VARCHAR(50),
+    application_mode VARCHAR(200),
+    website VARCHAR(500)
+);
+
+
+INSERT INTO SCHEMES (
+    schemeid, schemename, department, eligibility, date_implemented, scheme_description, target_audience, budget_allocation, status, application_mode, website
+)
+VALUES
+(1, 'Pradhan Mantri Jan Arogya Yojana (PM-JAY)', 'Ministry of Health & Family Welfare', 'Families with annual income below ₹5 lakh, Socio-economic criteria-based beneficiaries', '2018-09-23', 'Health insurance covering ₹5 lakh per family annually.', 'Low-income families', 100000000000, 'Active', 'Online and Offline', 'https://www.pmjay.gov.in'),
+(2, 'Pradhan Mantri Kaushal Vikas Yojana (PMKVY)', 'Ministry of Skill Development', 'Youth aged 15–29, unemployed, or school dropouts', '2015-07-15', 'Skill development initiative for employability.', 'Unemployed youth', 30000000000, 'Active', 'Online', 'https://pmkvyofficial.org'),
+(3, 'Beti Bachao Beti Padhao', 'Ministry of Women & Child Development', 'All sections of society, focused on districts with low girl child sex ratio', '2015-01-22', 'Campaign for protecting and educating the girl child.', 'Girls and families', 20000000000, 'Active', 'Online and Offline', 'https://wcd.nic.in'),
+(4, 'Mid-Day Meal Scheme', 'Ministry of Education', 'Students enrolled in government or government-aided schools', '1995-08-15', 'Nutritional meals to improve enrollment and health in schools.', 'School children', 15000000000, 'Active', 'Offline', 'https://mdm.nic.in'),
+(5, 'MGNREGA', 'Ministry of Rural Development', 'Adults in rural households willing to do unskilled manual work', '2006-02-02', 'Provides 100 days of guaranteed wage employment in rural areas.', 'Rural households', 500000000000, 'Active', 'Offline', 'https://nrega.nic.in'),
+(6, 'National Rural Health Mission (NRHM)', 'Ministry of Health & Family Welfare', 'Rural population with focus on vulnerable sections', '2005-04-12', 'Healthcare for rural areas with special focus on maternal and child health.', 'Rural population', 70000000000, 'Active', 'Offline', 'https://nhm.gov.in'),
+(7, 'Atal Pension Yojana', 'Ministry of Finance', 'Citizens aged 18-40 with a valid bank account', '2015-05-09', 'Pension scheme for unorganized sector workers.', 'Unorganized sector workers', 40000000000, 'Active', 'Online and Offline', 'https://npscra.nsdl.co.in'),
+(8, 'Sukanya Samriddhi Yojana', 'Ministry of Women & Child Development', 'Parents/guardians of a girl child aged below 10 years', '2015-01-22', 'Small savings scheme for the welfare of the girl child.', 'Parents of girl children', 25000000000, 'Active', 'Offline', 'https://www.indiapost.gov.in'),
+(9, 'Digital India Programme', 'Ministry of Electronics & IT', 'All citizens of India', '2015-07-01', 'Promotes digital empowerment and governance.', 'General public', 100000000000, 'Active', 'Online', 'https://www.digitalindia.gov.in'),
+(10, 'National Food Security Act (NFSA)', 'Ministry of Consumer Affairs', 'Households with priority under PDS; economically weaker sections', '2013-09-10', 'Ensures subsidized food grains to two-thirds of the population.', 'Economically weaker sections', 150000000000, 'Active', 'Offline', 'https://nfsa.gov.in'),
+(11, 'Ayushman Bharat Health and Wellness Centers', 'Ministry of Health & Family Welfare', 'All citizens of India', '2018-04-14', 'Establishes health and wellness centers across India.', 'General public', 100000000000, 'Active', 'Offline', 'https://www.pmjay.gov.in'),
+(12, 'Stand-Up India Scheme', 'Ministry of Finance', 'SC/ST and women entrepreneurs seeking loans', '2016-04-05', 'Promotes entrepreneurship among SC/ST and women.', 'SC/ST, women', 10000000000, 'Active', 'Online', 'https://standupmitra.in'),
+(13, 'PM Street Vendor''s AtmaNirbhar Nidhi', 'Ministry of Housing & Urban Affairs', 'Street vendors affected by COVID-19 lockdown', '2020-06-01', 'Financial assistance for street vendors affected by the pandemic.', 'Street vendors', 5000000000, 'Active', 'Online and Offline', 'https://pmsvanidhi.mohua.gov.in'),
+(14, 'Pradhan Mantri Gramin Awaas Yojana', 'Ministry of Rural Development', 'Rural families without adequate housing facilities', '2016-11-20', 'Provides pucca houses to rural families.', 'Rural households', 150000000000, 'Active', 'Offline', 'https://pmayg.nic.in'),
+(15, 'Kishori Shakti Yojana', 'Ministry of Women & Child Development', 'Adolescent girls aged 11-18 years in rural and urban slum areas', '2000-08-15', 'Improves nutrition and health of adolescent girls.', 'Adolescent girls', 8000000000, 'Active', 'Offline', 'https://wcd.nic.in'),
+(16, 'PM Ujjwala Yojana', 'Ministry of Petroleum & Natural Gas', 'Women in BPL households', '2016-05-01', 'Distributes LPG connections to BPL households to reduce health risks.', 'BPL families', 32000000000, 'Active', 'Online and Offline', 'https://www.pmuy.gov.in'),
+(17, 'Mission Indradhanush', 'Ministry of Health & Family Welfare', 'All children below 2 years and pregnant women', '2014-12-25', 'Immunization drive for children and pregnant women.', 'Pregnant women, children', 10000000000, 'Active', 'Offline', 'https://www.nhm.gov.in'),
+(18, 'PM Kisan Samman Nidhi', 'Ministry of Agriculture', 'Small and marginal farmers with landholding', '2019-12-01', 'Provides direct income support to farmers.', 'Small and marginal farmers', 750000000000, 'Active', 'Online and Offline', 'https://pmkisan.gov.in'),
+(19, 'PM Fasal Bima Yojana', 'Ministry of Agriculture', 'Farmers with landholding; covers crop insurance', '2016-01-13', 'Insurance coverage for farmers against crop losses.', 'Farmers', 150000000000, 'Active', 'Offline', 'https://pmfby.gov.in'),
+(20, 'Sarva Shiksha Abhiyan', 'Ministry of Education', 'Children aged 6-14 years', '2001-11-14', 'Universalizes elementary education in India.', 'Children aged 6-14', 100000000000, 'Active', 'Offline', 'https://samagra.education.gov.in'),
+(21, 'National Child Labour Project', 'Ministry of Labour & Employment', 'Children in hazardous occupations, focusing on rehabilitation', '1988-08-15', 'Focuses on rescuing and rehabilitating child laborers.', 'Child laborers', 5000000000, 'Active', 'Offline', 'https://labour.gov.in/nclp');
