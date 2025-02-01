@@ -1,5 +1,7 @@
 package com.citizenservicesportal.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +23,20 @@ public class UserService implements UsersInterface {
 		UserDetails userDetails = new UserDetails();
 		BeanUtils.copyProperties(user, userDetails);
 		
+		repository.save(userDetails);
+		
 		System.out.println("User Has been Registered....");
 		
 	}
 
 	@Override
 	public UserDetails GetUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Optional<UserDetails> userdetail =  repository.findByEmail(email);
+		
+		System.out.println(userdetail.get());
+		
+		return userdetail.get();
 	}
 
 	@Override

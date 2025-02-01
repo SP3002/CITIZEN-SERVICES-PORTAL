@@ -20,16 +20,16 @@ public class UsersDTO {
 	 * access to the DATA
 	 */
 	
-	private Integer UserID;
-	private String FirstName;
-	private String MiddleName;
-	private String LastName;
-	private Date DateOfBirth;
-	private String Gender;
-	private String Pincode;
-	private String Email;
-	private String MobileNumber;
-	private String AadharNumber;
-	private String Password;
+	private Integer userID;
+	private String firstName;
+	private String middleName;
+	private String lastName;
+	private Date dateofbirth;
+	private String gender;
+	private String pincode;
+	private String email;
+	private String mobileNumber;
+	private String aadharNumber;
+	private String password;
 	
 }

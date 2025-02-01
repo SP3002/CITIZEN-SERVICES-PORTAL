@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -59,7 +60,7 @@ public class UserDetails {
 	private String lastName;
 	
 	@Column(name="dateofbirth", nullable = false)
-	@NotBlank(message = "Date of Birth is a mandatory field")
+	@NotNull(message = "Date of Birth is a mandatory field")
 	@Temporal(TemporalType.DATE)
 	private Date dateofbirth;
 	
@@ -72,7 +73,7 @@ public class UserDetails {
 	@Pattern(regexp = "\\d{6}", message = "pincode must of 6-Digits")
 	private String pincode;
 	
-	@Column(name="mobilenumber", nullable = false, length = 10)
+	@Column(name="mobilenumber", nullable = false, length = 10, unique = true)
 	@NotBlank(message = "Mobile number is required")
 	@Pattern(regexp = "\\d{10}", message = "Mobile Number should be only 10-Digits")
 	private String mobileNumber;
@@ -82,7 +83,7 @@ public class UserDetails {
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Invalid email format")
     private String email;
 	
-	@Column(name="aadharnumber", nullable = false, length = 12)
+	@Column(name="aadharnumber", nullable = false, length = 12, unique = true)
 	@NotBlank(message = "Aadhar number is required")
 	@Pattern(regexp = "\\d{12}", message = "Aadhar Number must contain 12-digits")	
 	private String aadharNumber;
