@@ -12,7 +12,7 @@ CREATE TABLE users (
 	middlename VARCHAR(100) NOT NULL,
 	lastname VARCHAR(100) NOT NULL,
 	dateofbirth DATE,
-	mobilenumber BIGINT(10) UNIQUE NOT NULL,
+	mobilenumber BIGINT(10) UNIQUE NOT NULL, 
 	pincode VARCHAR(6) NOT NULL,
 	aadharnumber VARCHAR(12) UNIQUE NOT NULL,
 	emailid VARCHAR(100),
@@ -64,3 +64,33 @@ VALUES
 (19, 'PM Fasal Bima Yojana', 'Ministry of Agriculture', 'Farmers with landholding; covers crop insurance', '2016-01-13', 'Insurance coverage for farmers against crop losses.', 'Farmers', 150000000000, 'Active', 'Offline', 'https://pmfby.gov.in'),
 (20, 'Sarva Shiksha Abhiyan', 'Ministry of Education', 'Children aged 6-14 years', '2001-11-14', 'Universalizes elementary education in India.', 'Children aged 6-14', 100000000000, 'Active', 'Offline', 'https://samagra.education.gov.in'),
 (21, 'National Child Labour Project', 'Ministry of Labour & Employment', 'Children in hazardous occupations, focusing on rehabilitation', '1988-08-15', 'Focuses on rescuing and rehabilitating child laborers.', 'Child laborers', 5000000000, 'Active', 'Offline', 'https://labour.gov.in/nclp');
+
+
+-----------------------[ MYSCHEME] -----------------------------
+CREATE TABLE users (
+
+	userid INTEGER PRIMARY KEY,
+	firstname VARCHAR(100) NOT NULL,
+	middlename VARCHAR(100) NOT NULL,
+	lastname VARCHAR(100) NOT NULL,
+	dateofbirth DATE,
+	gender[male/female/transgender],
+	marital status [married, unmarried, divorced, widow]
+	area[rural, urban],
+	state,
+	caste [gen/obc/pvtg/sc/st],
+	differently abled [yes/no],
+	differently abled percentage[1-100],
+	minority[yes/no],
+	student[yes/no],
+	current employement[employed, unemployed, self employed/ entrepreneur]
+	bpl [yes/no],
+	harship[yes/no],
+	familyincome,
+	mobilenumber BIGINT(10) UNIQUE NOT NULL, 
+	pincode VARCHAR(6) NOT NULL,
+	aadharnumber VARCHAR(12) UNIQUE NOT NULL,
+	emailid VARCHAR(100),
+	password VARCHAR(300) -- hashed password
+
+)
