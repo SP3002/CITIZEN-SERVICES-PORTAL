@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.citizenservicesportal.dto.UsersDTO;
@@ -21,15 +20,17 @@ public class UserController {
 	public void UserRegistration(@RequestBody UsersDTO user) {
 		
 		System.out.println(user);
-		userService.RegisterUser(user);
+		userService.registerUser(user);
 		
 	}
 	
-	@GetMapping("/FindUserByEmail")
-	public void FindByEmail( @RequestParam String email ) {
-		
-		userService.GetUserByEmail(email);
-		
-	}
+	/*
+	 * @GetMapping("/FindUserByEmail") public void FindByEmail( @RequestParam String
+	 * email ) {
+	 * 
+	 * userService.GetUserByEmail(email);
+	 * 
+	 * }
+	 */
 	
 }

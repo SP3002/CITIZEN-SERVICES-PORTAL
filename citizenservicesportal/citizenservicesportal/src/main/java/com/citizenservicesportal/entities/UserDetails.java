@@ -1,10 +1,10 @@
 package com.citizenservicesportal.entities;
 
-import java.awt.geom.Area;
 import java.sql.Date;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.citizenservicesportal.enums.Area;
 import com.citizenservicesportal.enums.Caste;
 import com.citizenservicesportal.enums.EmploymentStatus;
 import com.citizenservicesportal.enums.Gender;
@@ -146,8 +146,16 @@ public class UserDetails {
 	    @Email(message = "Invalid email format")
 	    private String email;
 
+		/*
+		 * here the lenght of the password is 300, since the plan is to store using
+		 * hashing methods
+		 */
 	    @Column(name = "password", nullable = false, length = 300)
 	    @NotBlank(message = "Please enter a password")
 	    private String password;
 
+//	    public void setArea(Area area) {
+//	    	this.area = area;
+//	    }
+	    
 }
