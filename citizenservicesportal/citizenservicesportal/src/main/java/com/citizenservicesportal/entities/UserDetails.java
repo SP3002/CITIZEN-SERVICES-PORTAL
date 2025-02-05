@@ -154,8 +154,4 @@ public class UserDetails {
 	    @NotBlank(message = "Please enter a password")
 	    private String password;
 
-//	    public void setArea(Area area) {
-//	    	this.area = area;
-//	    }
-	    
 }

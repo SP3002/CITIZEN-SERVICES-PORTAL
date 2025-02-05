@@ -1,7 +1,6 @@
 package com.citizenservicesportal.enums;
 
 public enum MaritalStatus {
-	
-    MARRIED, UNMARRIED, DIVORCED, WIDOW
-	
+	MARRIED,married, UNMARRIED,unmarried, DIVORCED,divorced, WIDOW,widow;
+
 }

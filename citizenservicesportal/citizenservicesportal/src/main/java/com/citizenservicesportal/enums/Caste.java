@@ -1,7 +1,5 @@
 package com.citizenservicesportal.enums;
 
 public enum Caste {
-
-	GEN, OBC, PVTG, SC, ST
-	
+	GEN, OBC, SC, ST,ALL, gen,sc,obc,st,All,all;
 }

@@ -15,16 +15,17 @@ import com.citizenservicesportal.enums.EmploymentStatus;
 import com.citizenservicesportal.enums.Gender;
 import com.citizenservicesportal.enums.MaritalStatus;
 import com.citizenservicesportal.enums.YesNo;
-import com.citizenservicesportal.repository.UsersRepository;
+import com.citizenservicesportal.repositories.UsersRepository;
 
 @Service
 public class UserService{
 
 	 @Autowired
-	    private UsersRepository userRepository;
+	 private UsersRepository userRepository;
+	 
+	 @Autowired
+	 private PasswordEncoder passwordEncoder;
 
-	    @Autowired
-	    private PasswordEncoder passwordEncoder;
 
 	    public String registerUser(UsersDTO userDTO) {
 	        // Check if user already exists
@@ -34,9 +35,6 @@ public class UserService{
 	            return "User already registered with provided email, mobile, or Aadhar.";
 	        }
 
-	        System.out.println("Encoded Password: " + passwordEncoder.encode(userDTO.getPassword()));
-
-	        // Create new user
 	        UserDetails user = new UserDetails();
 	        user.setFirstName(userDTO.getFirstName());
 	        user.setMiddleName(userDTO.getMiddleName());
@@ -59,23 +57,31 @@ public class UserService{
 	        user.setMobileNumber(userDTO.getMobileNumber());
 	        user.setAadharNumber(userDTO.getAadharNumber());
 	        user.setEmail(userDTO.getEmail());
-	        user.setPassword(passwordEncoder.encode(userDTO.getPassword())); // Encrypt password
+	        String hashedPassword = passwordEncoder.encode(userDTO.getPassword());
+	        System.out.println("hashed password : " + hashedPassword );
+	        user.setPassword( hashedPassword ); 
 
 	        userRepository.save(user);
 	        return "User registered successfully!";
 	    }
 
-	    public String loginUser(LoginDTO loginDTO) {
-	        Optional<UserDetails> user = userRepository.findByEmail(loginDTO.getUsername())
-	                .or(() -> userRepository.findByMobileNumber(loginDTO.getUsername()))
-	                .or(() -> userRepository.findByAadharNumber(loginDTO.getUsername()));
-
-	        if (user.isPresent() && passwordEncoder.matches(loginDTO.getPassword(), user.get().getPassword())) {
-	            return "Login Successful";
-	        } else {
-	            return "Invalid credentials!";
-	        }
-	    }
-
-		
+	    public Optional<UserDetails> getUserByUsername( LoginDTO loginDTO ) {
+	    	
+	    	 if ( userRepository.existsByEmail( loginDTO.getUsername() ) )
+			 {
+	    		 return userRepository.findByEmail( loginDTO.getUsername() );
+	    	 }
+	    	 else if ( userRepository.existsByMobileNumber( loginDTO.getUsername() ) )
+	    	 {
+	    		 return userRepository.findByMobileNumber( loginDTO.getUsername() );
+	    	 }
+	    	 else if( userRepository.existsByAadharNumber( loginDTO.getUsername() ) )
+	    	 {
+	    		 return userRepository.findByAadharNumber( loginDTO.getUsername() );
+	    	 }
+	    	 
+	    	return null;
+	    			 
+   	 }
+	    	
 }
