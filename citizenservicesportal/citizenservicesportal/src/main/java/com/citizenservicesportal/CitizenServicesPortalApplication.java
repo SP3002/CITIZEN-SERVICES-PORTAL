@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "com.citizenservicesportal.repositories")
 @EntityScan(basePackages = "com.citizenservicesportal.entities")
 @SpringBootApplication(scanBasePackages = "com.citizenservicesportal")
+//@EnableDiscoveryClient
 public class CitizenServicesPortalApplication {
 
 	public static void main(String[] args) {
