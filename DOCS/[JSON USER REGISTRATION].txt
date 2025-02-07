@@ -1,0 +1,45 @@
+{
+  "firstName": "John",
+  "middleName": "Michael",
+  "lastName": "Doe",
+  "dateOfBirth": "1990-05-15",
+  "gender": "Male",
+  "maritalStatus": "UNMARRIED",
+  "area": "Urban",
+  "state": "Maharashtra",
+  "caste": "OBC",
+  "differentlyAbled": "NO",
+  "differentlyAbledPercentage": null,
+  "minority": "NO",
+  "student": "YES",
+  "currentEmployment": "Employed",
+  "bpl": "NO",
+  "hardship": "NO",
+  "familyIncome": 450000.00,
+  "pincode": "411001",
+  "mobileNumber": "9876543210",
+  "aadharNumber": "123456789012",
+  "email": "johndoe@example.com",
+  "password": "45678"
+}
+=== got no schems for this user====
+
+
+
+-----------------------------------------
+
+{
+    "gender": "ALL",
+    "caste": "ALL",
+    "minority": "ALL",
+    "student": "YES",
+    "currentEmployment": "UNEMPLOYED",
+    "bpl": "NO",
+    "hardship": "NO",
+    "ApplicationMode" :"ONLINE" ,
+    "differentlyAbled": "NO",
+    "familyIncome": 0,
+    "state": "CENTRAL"
+}
+
+====got 9  schemes ===
