@@ -1,0 +1,80 @@
+.navbar {
+    position: fixed;
+    background-color: #dff3e1; /* Light green shade */
+    padding: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    width: 100%;
+    z-index: 1000;
+    padding-left: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for navbar */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 100px;
+    height: 42px;
+}
+
+/* Profile picture styling */
+.profile-pic {
+    width: 40px; /* Slightly larger for better visibility */
+    height: 40px;
+    border-radius: 50%; /* Makes it circular */
+    object-fit: cover; /* Ensures the image fills the circle properly */
+    border: 2px solid #fff; /* Adds a subtle border */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 15px;
+}
+
+/* Hover effect for profile picture */
+.profile-pic:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Universal button styles for Login, Register, and Logout */
+.auth-btn {
+    background-color: #f5ead9; /* Primary blue color */
+    color: rgba(13, 1, 1, 0.94);
+    border: 2px solid black;
+    padding: 10px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+
+}
+
+/* Hover effect */
+.auth-btn:hover {
+    background-color:#f5d099;
+    transform: scale(1.05);
+}
+
+/* Spacing between buttons */
+.auth-btn + .auth-btn {
+    margin-left: 10px;
+}
+
+/* Centered button alignment */
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+/* Ensuring all images inside navbar follow a uniform width unless specified */
+.navbar img {
+    max-width: 100%;
+    height: auto;
+}

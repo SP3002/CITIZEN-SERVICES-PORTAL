@@ -1,10 +1,10 @@
 package com.citizenservicesportal.entities;
 
-import com.citizenservicesportal.enums.ApplicationMode;
+import com.citizenservicesportal.enums.Area;
 import com.citizenservicesportal.enums.Caste;
 import com.citizenservicesportal.enums.EmploymentStatus;
 import com.citizenservicesportal.enums.Gender;
-import com.citizenservicesportal.enums.Status;
+import com.citizenservicesportal.enums.MaritalStatus;
 import com.citizenservicesportal.enums.YesNo;
 
 import jakarta.persistence.Column;
@@ -14,78 +14,100 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name = "government_schemes")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Entity
+@Table(name = "scheme")
 public class GovernmentSchemes {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "schemeid")
     private Integer schemeId;
 
-    @Column(nullable = false, length = 255)
+    @Column(name = "schemename", nullable = false, length = 255)
+    @NotBlank(message = "Scheme Name is required")
     private String schemeName;
+    
+    @ManyToOne
+    @JoinColumn(name = "schemetypeid", nullable = false) // Foreign key column
+    private SchemeType schemeType;
 
-    @Column(nullable = false, length = 255)
-    private String ministry;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String eligibility;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Status status;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ApplicationMode applicationMode;
-
-    @Column(nullable = false, length = 500)
-    private String websiteUrl;
-
-    @Column(nullable = false)
-    private Integer schemeTypeId;
-
-    @Column(nullable = false, length = 100)
-    private String state;
+    @Column(name="schemeurl")
+    private String schemeURL;
+    
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
+    @NotBlank(message = "Description is required")
+    private String description;
 
     @Enumerated(EnumType.STRING)
-    private Gender gender = Gender.ALL;
+    @Column(name = "eligiblegender")
+    private Gender eligibleGender; //MALE, FEMALE, TRANSGENDER, ALL;
 
     @Enumerated(EnumType.STRING)
-    private Caste caste = Caste.ALL;
+    @Column(name = "eligiblemaritalstatus")
+    private MaritalStatus eligibleMaritalStatus; //MARRIED, UNMARRIED,DIVORCED,WIDOW;
 
     @Enumerated(EnumType.STRING)
-    private YesNo minority = YesNo.ALL;
+    @Column(name = "eligiblearea")
+    private Area eligibleArea; //RURAL, URBAN;
 
     @Enumerated(EnumType.STRING)
-    private YesNo student = YesNo.ALL;
+    @Column(name = "eligiblecaste")
+    private Caste eligibleCaste; //GEN, OBC, SC, ST,ALL;
 
     @Enumerated(EnumType.STRING)
-    private EmploymentStatus employmentStatus = EmploymentStatus.UNEMPLOYED;
+    @Column(name = "eligibledifferentlyabled")
+    private YesNo eligibleDifferentlyAbled; //YES, NO, ALL;
+    
 
     @Enumerated(EnumType.STRING)
-    private YesNo bpl = YesNo.ALL;
+    @Column(name = "eligibleminority")
+    private YesNo eligibleMinority; //YES, NO, ALL;
 
     @Enumerated(EnumType.STRING)
-    private YesNo hardship = YesNo.NO;
+    @Column(name = "eligiblestudent")
+    private YesNo eligibleStudent; //YES, NO, ALL;
 
     @Enumerated(EnumType.STRING)
-    private YesNo differentlyAbled = YesNo.NO;
+    @Column(name = "eligibleemploymentstatus")
+    private EmploymentStatus eligibleEmploymentStatus;
 
-    private Double minIncome;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "eligiblebpl")
+    private YesNo eligibleBPL; //YES, NO, ALL;
 
-    private Double maxIncome;
-	
+    @Enumerated(EnumType.STRING)
+    @Column(name = "eligiblehardship")
+    private YesNo eligibleHardship; //YES, NO, ALL;
+
+
+    @Column(name = "minfamilyincome")
+    private Double minFamilyIncome;
+
+    @Column(name = "maxfamilyincome")
+    private Double maxFamilyIncome;
+
+    @Column(name = "minage")
+    private Integer minAge;
+
+    @Column(name = "maxage")
+    private Integer maxAge;
+
+    @Column(name = "othercriteria", columnDefinition = "TEXT")
+    private String otherCriteria;
+
 }

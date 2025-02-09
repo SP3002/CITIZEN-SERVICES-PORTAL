@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/CitizenServicesPortal")
+@CrossOrigin(origins = "http://localhost:3000")
 public class LoginControllers {
 	
 	@Autowired
@@ -28,6 +31,21 @@ public class LoginControllers {
 	
 	@Autowired
 	private UserService userService;
+	
+	@GetMapping("/login")
+	public ResponseEntity<?> getLoginPage(HttpSession session) {
+		
+		UserDetails user = (UserDetails) session.getAttribute("UserDetails");
+		
+		if( user != null) {
+			return ResponseEntity.ok(user);
+		}
+		else {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User Not logged in");
+		}
+		
+		
+	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDTO, BindingResult result, HttpSession session){

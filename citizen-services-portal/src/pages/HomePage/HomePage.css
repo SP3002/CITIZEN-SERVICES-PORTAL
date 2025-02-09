@@ -1,0 +1,57 @@
+.homepage-container{
+    justify-content: center;
+    /* padding-top: 67px; */
+}
+
+.image img{
+    width: 100%;
+    
+}
+
+
+.welcome{
+    text-align: center;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: linear-gradient(#e4efe5, #ffff,#e4efe5);
+    padding-top: 50px;
+}
+
+.welcome>p{
+    font-size: 225%;
+}
+
+.description {
+    text-align: center;
+    /* border: solid; */
+    margin: 10px;
+    font-style: italic;
+    font-size: 150%; /* Increased font size */
+    padding: 20px 50px;
+}
+
+.description h6 {
+    font-weight: bold;
+    font-size: 100%; /* Slightly increased size for headings */
+}
+
+.description p {
+    text-align: justify;
+    font-size: 90%; /* Increased paragraph font size */
+}
+
+.developers{
+    text-align: center;
+    font-style: italic;
+    /* background: linear-gradient( #ffff, #e4efe5); */
+    /* margin: 0px; */
+    /* border: solid; */
+}
+
+.developers h6{
+    font-weight: bold;
+}
+
+.developers p{
+    margin-bottom: 0px;
+}
+

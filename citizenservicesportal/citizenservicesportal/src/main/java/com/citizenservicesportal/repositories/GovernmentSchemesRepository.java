@@ -5,12 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.citizenservicesportal.dto.UsersDTO;
 import com.citizenservicesportal.entities.GovernmentSchemes;
-import com.citizenservicesportal.enums.Caste;
-import com.citizenservicesportal.enums.EmploymentStatus;
-import com.citizenservicesportal.enums.Gender;
-import com.citizenservicesportal.enums.YesNo;
+import com.citizenservicesportal.entities.UserDetails;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -25,60 +21,66 @@ public class GovernmentSchemesRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public List<GovernmentSchemes> findEligibleSchemes (UsersDTO user){
+	public List<GovernmentSchemes> findEligibleSchemes (UserDetails user, Integer schemetypeID){
 		
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<GovernmentSchemes> query = cb.createQuery(GovernmentSchemes.class);
         Root<GovernmentSchemes> scheme = query.from(GovernmentSchemes.class);
 
+        List<GovernmentSchemes> allschemes = findAllSchemes();
+        
+        for(GovernmentSchemes gs : allschemes) {
+        	System.out.println("scheme"+ gs);
+        }
+        
         List<Predicate> predicates = new ArrayList<>();
 
-     // Gender filter (Handles Male, Female, Other, and All)
+     // Gender filter (Handles Male, Female, Other, an	d All)
         predicates.add(cb.or(
             cb.equal(scheme.get("gender"), "ALL"), 
-            cb.equal(scheme.get("gender"), Gender.valueOf(user.getGender().toUpperCase()))
+            cb.equal(scheme.get("gender"), user.getGender())
         ));
 
         // Caste filter (Handles GEN, OBC, SC, ST, All)
         predicates.add(cb.or(
             cb.equal(scheme.get("caste"), "ALL"), 
-            cb.equal(scheme.get("caste"), Caste.valueOf(user.getCaste().toUpperCase()))
+            cb.equal(scheme.get("caste"), user.getCaste())
         ));
 
         // Minority filter (Handles Yes, No, All)
         predicates.add(cb.or(
             cb.equal(scheme.get("minority"), "ALL"), 
-            cb.equal(scheme.get("minority"), YesNo.valueOf(user.getMinority().toUpperCase()))
+            cb.equal(scheme.get("minority"), user.getMinority())
         ));
 
         // Student filter (Handles Yes, No, All)
         predicates.add(cb.or(
             cb.equal(scheme.get("student"), "ALL"), 
-            cb.equal(scheme.get("student"), YesNo.valueOf(user.getStudent().toUpperCase()))
+            cb.equal(scheme.get("student"), user.getStudent())
         ));
 
         // Employment Status filter (Unemployed, Employed, Self-Employed, All)
         predicates.add(cb.or(
             cb.equal(scheme.get("employmentStatus"), "ALL"), 
-            cb.equal(scheme.get("employmentStatus"), EmploymentStatus.valueOf(user.getCurrentEmployment().toUpperCase()))
+            cb.equal(scheme.get("employmentStatus"), user.getCurrentEmployment())
         ));
 
         // BPL filter (Handles Yes, No, All)
         predicates.add(cb.or(
             cb.equal(scheme.get("bpl"), "ALL"), 
-            cb.equal(scheme.get("bpl"), YesNo.valueOf(user.getBpl().toUpperCase()) )
+            cb.equal(scheme.get("bpl"), user.getBpl()) 
         ));
 
         // Hardship filter (Handles Yes, No, All)
         predicates.add(cb.or(
             cb.equal(scheme.get("hardship"), "ALL"), 
-            cb.equal(scheme.get("hardship"), YesNo.valueOf(user.getHardship().toUpperCase()) )
+            cb.equal(scheme.get("hardship"), user.getHardship()) 
         ));
 
         // Differently Abled filter (Handles Yes, No, All)
         predicates.add(cb.or(
             cb.equal(scheme.get("differentlyAbled"), "ALL"), 
-            cb.equal(scheme.get("differentlyAbled"), YesNo.valueOf(user.getDifferentlyAbled().toUpperCase()) )
+            cb.equal(scheme.get("differentlyAbled"), user.getDifferentlyAbled()) 
         ));
 
         // Income Range filter (Handles Min and Max Income)
@@ -92,12 +94,26 @@ public class GovernmentSchemesRepository {
             cb.equal(scheme.get("state"), "ALL"), 
             cb.equal(scheme.get("state"), user.getState())
         ));
+        
+        System.out.println(schemetypeID);
 
+        predicates.add(cb.equal(scheme.get("schemeTypeId"), schemetypeID));
+        
         query.select(scheme).where(predicates.toArray(new Predicate[0]));
 
         return entityManager.createQuery(query).getResultList();
  
 		
 	}
+	
+	public List<GovernmentSchemes> findAllSchemes() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<GovernmentSchemes> query = cb.createQuery(GovernmentSchemes.class);
+        Root<GovernmentSchemes> scheme = query.from(GovernmentSchemes.class);
+
+        query.select(scheme); // Select all schemes
+
+        return entityManager.createQuery(query).getResultList();
+    }
 	
 }

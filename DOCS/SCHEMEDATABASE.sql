@@ -1,0 +1,119 @@
+SELECT * FROM citizenservicesportal.scheme;
+
+describe scheme;
+
+CREATE TABLE SCHEME (
+    schemeid INT AUTO_INCREMENT PRIMARY KEY,
+    schemename VARCHAR(255) NOT NULL,
+    schemetypeid INT NOT NULL,
+    schemeurl VARCHAR(255),
+    description TEXT NOT NULL,
+    eligiblegender ENUM('MALE', 'FEMALE', 'TRANSGENDER', 'ALL'),
+    eligiblemaritalstatus ENUM('MARRIED', 'UNMARRIED', 'DIVORCED', 'WIDOW','ALL'),
+    eligiblearea ENUM('RURAL', 'URBAN','ALL'),
+    eligiblecaste ENUM('GEN', 'OBC', 'SC', 'ST', 'ALL'),
+    eligibledifferentlyabled ENUM('YES', 'NO', 'ALL'),
+    eligibleminority ENUM('YES', 'NO', 'ALL'),
+    eligiblestudent ENUM('YES', 'NO', 'ALL'),
+    eligibleemploymentstatus ENUM('EMPLOYED', 'UNEMPLOYED', 'SELF_EMPLOYED', 'ALL'),
+    eligiblebpl ENUM('YES', 'NO', 'ALL'),
+    eligiblehardship ENUM('YES', 'NO', 'ALL'),
+    minfamilyincome DOUBLE,
+    maxfamilyincome DOUBLE,
+    minage INT,
+    maxage INT,
+    othercriteria TEXT,
+    CONSTRAINT fk_scheme_schemetype FOREIGN KEY (schemetypeid) REFERENCES SCHEMETYPE(schemetypeid) ON DELETE CASCADE
+);
+
+-- 40002
+INSERT INTO scheme (schemename, schemetypeid, schemeurl, description, eligiblegender, eligiblemaritalstatus, eligiblearea, eligiblecaste, eligibledifferentlyabled, eligibleminority, eligiblestudent, eligibleemploymentstatus, eligiblebpl, eligiblehardship, minfamilyincome, maxfamilyincome, minage, maxage, othercriteria) VALUES 
+('Ayushman Bharat - PMJAY', 40002, 'https://pmjay.gov.in', 'Provides free health insurance up to ₹5 lakh per family per year for economically weaker sections.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'YES', 'ALL', 0, 120000, NULL, NULL, 'For families listed in SECC database.'),
+('Pradhan Mantri Suraksha Bima Yojana', 40002, 'https://jansuraksha.gov.in', 'Accident insurance scheme with coverage of ₹2 lakh at a nominal premium.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 0, 240000, 18, 70, 'Bank account required.'),
+('National Health Mission', 40002, 'https://nhm.gov.in', 'Provides affordable healthcare services, especially to vulnerable communities.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 0, 180000, NULL, NULL, 'Covers maternal & child health, communicable diseases.'),
+('Rashtriya Bal Swasthya Karyakram', 40002, 'https://rbsk.gov.in', 'Provides early detection and free treatment for children with diseases.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'ALL', 'ALL', 0, 150000, 0, 18, 'Covers birth defects, malnutrition, disabilities.'),
+('Janani Suraksha Yojana', 40002, 'https://nhm.gov.in', 'Encourages institutional delivery among poor pregnant women with financial assistance.', 'FEMALE', 'MARRIED', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'YES', 'ALL', 0, 180000, 18, 45, 'For BPL pregnant women only.'),
+('National Tuberculosis Elimination Programme', 40002, 'https://tbcindia.gov.in', 'Provides free TB diagnosis and treatment services.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 0, 200000, NULL, NULL, 'Covers TB detection & drug distribution.'),
+('Ayushman Bharat Health and Wellness Centres', 40002, 'https://pmjay.gov.in', 'Upgrades existing healthcare facilities into comprehensive wellness centers.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 0, 250000, NULL, NULL, 'Includes free medicines & diagnostics.'),
+('Mukhya Mantri Amrutum Yojana', 40002, 'https://www.magujarat.com', 'Cashless health insurance scheme for BPL families in Gujarat.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'YES', 'ALL', 0, 150000, NULL, NULL, 'Specific to Gujarat state residents.'),
+('Mission Indradhanush', 40002, 'https://nhm.gov.in', 'Ensures full immunization for children under two years & pregnant women.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'ALL', 'ALL', 0, 180000, 0, 2, 'Covers Polio, DPT, BCG, Hepatitis B vaccines.'),
+('Deendayal Antyodaya Yojana - NRLM Health Services', 40002, 'https://aajeevika.gov.in', 'Provides healthcare support to SHG women & rural poor.', 'FEMALE', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 0, 150000, NULL, NULL, 'Covers maternal health, anemia, malnutrition.'),
+('National Programme for Health Care of Elderly', 40002, 'https://mohfw.gov.in', 'Offers free medical support for senior citizens.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 0, 300000, 60, NULL, 'Includes geriatric clinics in hospitals.'),
+('Rashtriya Kishor Swasthya Karyakram', 40002, 'https://nhm.gov.in', 'Provides healthcare services for adolescents.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 0, 200000, 10, 19, 'Focuses on nutrition, sexual health, substance abuse.'),
+('Universal Immunization Programme', 40002, 'https://nhm.gov.in', 'Provides free vaccination against life-threatening diseases.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'ALL', 'ALL', 0, 250000, 0, 5, 'Covers Polio, Hepatitis, Measles, Diphtheria vaccines.'),
+('National Rural Health Mission', 40002, 'https://nhm.gov.in', 'Strengthens healthcare delivery in rural areas.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 0, 180000, NULL, NULL, 'Includes telemedicine & ASHA worker support.'),
+('Jeevandai Yojana', 40002, 'https://jeevandayee.gov.in', 'Offers free life-saving surgeries for poor patients.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'YES', 'ALL', 0, 150000, NULL, NULL, 'Covers cardiac, cancer, orthopedic surgeries.'),
+('State Insurance Scheme for Workers', 40002, 'https://esic.gov.in', 'Provides health insurance & medical care for workers.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'EMPLOYED', 'ALL', 'ALL', 0, 250000, 18, 60, 'Covers factories, industries, MSMEs.'),
+('Senior Citizens Health Insurance Scheme', 40002, 'https://mohfw.gov.in', 'Covers medical expenses for elderly above 60.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'ALL', 'ALL', 0, 300000, 60, NULL, 'Includes OPD, hospitalization, home care.'),
+('National Mental Health Programme', 40002, 'https://mohfw.gov.in', 'Provides mental health services & treatment.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 0, 200000, NULL, NULL, 'Includes counseling, rehab, therapy support.'),
+('Integrated Child Development Services (ICDS)', 40002, 'https://icds-wcd.nic.in', 'Ensures nutrition, preschool education & healthcare for children.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'ALL', 'ALL', 0, 180000, 0, 6, 'Includes midday meals, immunization, health checkups.'),
+('Free Dialysis Scheme', 40002, 'https://mohfw.gov.in', 'Provides free dialysis treatment for poor kidney patients.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'YES', 'ALL', 0, 200000, NULL, NULL, 'Covers chronic kidney disease & dialysis centers.');
+
+
+-- 50001
+INSERT INTO SCHEME (schemename, schemetypeid, schemeurl, description, eligiblegender, eligiblemaritalstatus, eligiblearea, eligiblecaste, eligibledifferentlyabled, eligibleminority, eligiblestudent, eligibleemploymentstatus, eligiblebpl, eligiblehardship, minfamilyincome, maxfamilyincome, minage, maxage, othercriteria) VALUES 
+('Pradhan Mantri Fasal Bima Yojana', 50001, 'https://pmfby.gov.in', 'Provides crop insurance coverage for farmers against natural calamities.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 250000, 18, NULL, 'Covers losses due to drought, flood, pests.'),
+('Pradhan Mantri Krishi Sinchai Yojana', 50001, 'https://pmksy.gov.in', 'Aims to improve irrigation and water efficiency for farmers.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 200000, 18, NULL, 'Focuses on water conservation & irrigation.'),
+('Soil Health Card Scheme', 50001, 'https://agricoop.nic.in', 'Provides soil health cards to farmers with nutrient information.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 180000, 18, NULL, 'Helps in better soil management & fertilizer use.'),
+('National Agriculture Market (eNAM)', 50001, 'https://enam.gov.in', 'Creates an online platform for selling agricultural produce.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 250000, 18, NULL, 'Enables direct sale of crops, reducing middlemen.'),
+('Kisan Credit Card Scheme', 50001, 'https://pmkisan.gov.in', 'Provides credit to farmers for agricultural needs at low interest rates.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 200000, 18, NULL, 'Ensures timely credit for seeds, fertilizers, machinery.'),
+('Rashtriya Krishi Vikas Yojana', 50001, 'https://rkvy.nic.in', 'Encourages states to increase investment in agriculture.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 250000, 18, NULL, 'Aims to boost agricultural productivity.'),
+('National Rural Employment Guarantee Act (MGNREGA)', 50001, 'https://nrega.nic.in', 'Provides 100 days of guaranteed wage employment in rural areas.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'YES', 'ALL', 0, 100000, 18, 60, 'For unskilled laborers in rural areas.'),
+('Sub-Mission on Agricultural Mechanization', 50001, 'https://agricoop.nic.in', 'Promotes mechanization of agriculture by providing subsidies on machinery.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 300000, 18, NULL, 'Covers tractors, power tillers, harvesters.'),
+('Paramparagat Krishi Vikas Yojana', 50001, 'https://agricoop.nic.in', 'Promotes organic farming and sustainable agricultural practices.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 200000, 18, NULL, 'Encourages group-based organic farming.'),
+('National Mission on Sustainable Agriculture', 50001, 'https://nmsa.gov.in', 'Aims to make agriculture more resilient to climate change.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 250000, 18, NULL, 'Focuses on soil conservation, agroforestry.'),
+('PM-Kisan Samman Nidhi', 50001, 'https://pmkisan.gov.in', 'Provides ₹6,000 per year to eligible farmers in three installments.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 200000, 18, NULL, 'For small & marginal farmers with up to 2 hectares of land.'),
+('National Watershed Development Project for Rainfed Areas', 50001, 'https://agricoop.nic.in', 'Develops rainfed agriculture through watershed management.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 250000, 18, NULL, 'Focuses on water conservation & soil moisture.'),
+('Agri-Clinics and Agri-Business Centers Scheme', 50001, 'https://agricoop.nic.in', 'Provides financial support for setting up agriculture-related businesses.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 300000, 18, NULL, 'Encourages entrepreneurship in agriculture.'),
+('Gramin Bhandaran Yojana', 50001, 'https://agricoop.nic.in', 'Supports construction of rural godowns to store farm produce.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 400000, 18, NULL, 'Prevents post-harvest losses.'),
+('Dairy Entrepreneurship Development Scheme', 50001, 'https://dahd.nic.in', 'Supports dairy farming by providing loans & subsidies.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 350000, 18, NULL, 'Covers dairy farming, milk production.'),
+('National Livestock Mission', 50001, 'https://dahd.nic.in', 'Provides support for livestock farming & poultry.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 250000, 18, NULL, 'Promotes animal husbandry & veterinary services.'),
+('Green India Mission', 50001, 'https://moef.gov.in', 'Aims to increase forest cover and combat climate change.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'ALL', 'ALL', 0, 300000, 18, NULL, 'Focuses on afforestation and sustainable forestry.'),
+('Gobardhan Yojana', 50001, 'https://swachhbharatmission.gov.in', 'Promotes waste-to-energy projects using cattle dung.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 200000, 18, NULL, 'Supports biogas production & organic manure.'),
+('Per Drop More Crop', 50001, 'https://pmksy.gov.in', 'Encourages micro-irrigation systems to improve water use.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 250000, 18, NULL, 'Provides subsidies on drip irrigation & sprinklers.'),
+('National Bamboo Mission', 50001, 'https://nbm.nic.in', 'Supports bamboo cultivation & its commercial use.', 'ALL', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 300000, 18, NULL, 'Encourages bamboo farming & handicrafts.');
+
+-- 20003
+INSERT INTO SCHEME (schemename, schemetypeid, schemeurl, description, eligiblegender, eligiblemaritalstatus, eligiblearea, eligiblecaste, eligibledifferentlyabled, eligibleminority, eligiblestudent, eligibleemploymentstatus, eligiblebpl, eligiblehardship, minfamilyincome, maxfamilyincome, minage, maxage, othercriteria) VALUES 
+('National Means cum Merit Scholarship', 20003, 'https://scholarships.gov.in', 'Scholarship for meritorious students from economically weaker sections.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 150000, 12, 18, 'For students in Class 8 and above.'),
+('PM eVidya', 20003, 'https://diksha.gov.in', 'Digital education initiative with e-learning platforms.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'NO', 'ALL', 0, 500000, 5, 25, 'Access to digital learning materials for all students.'),
+('National Scholarship Scheme', 20003, 'https://scholarships.gov.in', 'Financial aid for students pursuing higher education.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 250000, 17, 30, 'For undergraduate and postgraduate students.'),
+('Rashtriya Madhyamik Shiksha Abhiyan', 20003, 'https://rmsaindia.gov.in', 'Scheme to enhance access to secondary education.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 250000, 10, 18, 'For students from Class 9 to 12.'),
+('Pragati Scholarship for Girls', 20003, 'https://scholarships.gov.in', 'Scholarship for meritorious female students pursuing technical education.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 300000, 17, 25, 'For female students in technical courses like engineering.'),
+('Vidya Lakshmi Portal', 20003, 'https://vidyalakshmi.co.in', 'Education loan portal for students.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'NO', 'ALL', 0, 500000, 17, 30, 'Provides easy access to education loans from multiple banks.'),
+('Sarva Shiksha Abhiyan', 20003, 'https://ssa.nic.in', 'Universal elementary education program.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 200000, 6, 14, 'For elementary education of children aged 6-14.'),
+('PM Research Fellowship', 20003, 'https://pmrf.in', 'Fellowship program for PhD scholars in premier institutes.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'NO', 'ALL', 0, 800000, 22, 35, 'For research scholars in STEM fields.'),
+('AICTE Saksham Scholarship', 20003, 'https://scholarships.gov.in', 'Scholarship for differently-abled students pursuing technical education.', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'YES', 'UNEMPLOYED', 'NO', 'ALL', 0, 600000, 17, 30, 'For specially-abled students in technical courses.'),
+('Mid-Day Meal Scheme', 20003, 'https://mdm.nic.in', 'Provides free meals to school children to improve nutrition.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 200000, 6, 14, 'For children in government schools.'),
+('Kendriya Vidyalaya Scheme', 20003, 'https://kvsangathan.nic.in', 'Provides quality education for government employees’ children.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'NO', 'ALL', 0, 700000, 6, 18, 'Covers schools under central government administration.'),
+('National Digital Library of India', 20003, 'https://ndl.iitkgp.ac.in', 'Online library providing access to academic resources.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'NO', 'ALL', 0, 500000, 5, 99, 'Free digital resources for students and researchers.'),
+('Beti Bachao Beti Padhao', 20003, 'https://wcd.nic.in', 'Encourages education for the girl child.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 200000, 6, 18, 'Aims to improve gender equality in education.'),
+('National Apprenticeship Promotion Scheme', 20003, 'https://apprenticeshipindia.gov.in', 'Provides on-the-job training for students.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'NO', 'ALL', 0, 500000, 18, 30, 'For students seeking industrial training.'),
+('Padho Pardesh Scheme', 20003, 'https://scholarships.gov.in', 'Interest subsidy for minority students studying abroad.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'YES', 'UNEMPLOYED', 'NO', 'ALL', 0, 600000, 17, 35, 'For minority students pursuing higher studies abroad.'),
+('IGNOU Free Education Scheme', 20003, 'https://ignou.ac.in', 'Free distance education for disadvantaged students.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 200000, 18, 40, 'For economically weak students enrolling in IGNOU courses.'),
+('NPTEL Online Courses', 20003, 'https://nptel.ac.in', 'Free online courses in engineering and science.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'NO', 'ALL', 0, 500000, 18, 99, 'For students & professionals in STEM fields.'),
+('Skill India Mission', 20003, 'https://skillindia.gov.in', 'Provides vocational training to improve employability.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'NO', 'ALL', 0, 400000, 15, 35, 'For skill development and employment training.'),
+('Dr. Ambedkar Post Matric Scholarship', 20003, 'https://scholarships.gov.in', 'Scholarship for economically backward OBC students.', 'ALL', 'ALL', 'ALL', 'OBC', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 250000, 17, 30, 'For OBC students pursuing higher studies.');
+
+-- 70001
+INSERT INTO SCHEME (schemename, schemetypeid, schemeurl, description, eligiblegender, eligiblemaritalstatus, eligiblearea, eligiblecaste, eligibledifferentlyabled, eligibleminority, eligiblestudent, eligibleemploymentstatus, eligiblebpl, eligiblehardship, minfamilyincome, maxfamilyincome, minage, maxage, othercriteria) VALUES 
+('Beti Bachao Beti Padhao', 70001, 'https://wcd.nic.in', 'Scheme to promote the education and well-being of the girl child.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'ALL', 'YES', 'ALL', 0, 200000, 0, 18, 'Financial support for girl child education.'),
+('Pradhan Mantri Matru Vandana Yojana', 70001, 'https://pmmvy.nic.in', 'Maternity benefit program for pregnant and lactating mothers.', 'FEMALE', 'MARRIED', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 250000, 18, 40, 'Cash incentive for first live birth.'),
+('Sukanya Samriddhi Yojana', 70001, 'https://indiapost.gov.in', 'Savings scheme for the financial security of the girl child.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'NO', 'ALL', 0, 500000, 0, 10, 'Parents can open accounts for girls up to age 10.'),
+('Ujjwala Scheme', 70001, 'https://wcd.nic.in', 'Rehabilitation and welfare scheme for trafficked women.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 150000, 18, 50, 'For women rescued from trafficking or exploitation.'),
+('Working Women Hostel Scheme', 70001, 'https://wcd.nic.in', 'Safe accommodation for working women in urban areas.', 'FEMALE', 'ALL', 'URBAN', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 800000, 18, 50, 'Affordable housing for working women.'),
+('Mahila Shakti Kendra', 70001, 'https://wcd.nic.in', 'Empowerment and skill development centers for women.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 300000, 18, 45, 'Provides vocational training and awareness programs.'),
+('Indira Gandhi Matritva Sahyog Yojana', 70001, 'https://pmmvy.nic.in', 'Maternity benefit scheme for pregnant and lactating women.', 'FEMALE', 'MARRIED', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 250000, 19, 40, 'Nutritional support for expectant mothers.'),
+('One Stop Centre Scheme', 70001, 'https://wcd.nic.in', 'Support centers for women facing violence and abuse.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 200000, 18, 60, 'Legal and psychological support for victims of violence.'),
+('Sabla Scheme', 70001, 'https://wcd.nic.in', 'Nutritional and skill development support for adolescent girls.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'YES', 'UNEMPLOYED', 'YES', 'ALL', 0, 250000, 11, 18, 'For adolescent girls aged 11-18.'),
+('Support to Training & Employment Program for Women (STEP)', 70001, 'https://wcd.nic.in', 'Skill training program for women to enhance employability.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 500000, 18, 45, 'Vocational training for self-employment.'),
+('Swadhar Greh', 70001, 'https://wcd.nic.in', 'Rehabilitation program for women in distress.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 150000, 18, 50, 'Shelter and support for homeless women.'),
+('Pradhan Mantri Mahila Shakti Kendra', 70001, 'https://wcd.nic.in', 'Empowerment of rural women through skill development.', 'FEMALE', 'ALL', 'RURAL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 300000, 18, 45, 'Skill training for rural women.'),
+('Maternity Benefit Program', 70001, 'https://pmmvy.nic.in', 'Cash incentives for pregnant women for nutrition and healthcare.', 'FEMALE', 'MARRIED', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 250000, 19, 40, 'For first two live births.'),
+('Crèches for Working Women', 70001, 'https://wcd.nic.in', 'Daycare centers for children of working women.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 800000, 18, 45, 'Affordable childcare for working mothers.'),
+('National Creche Scheme', 70001, 'https://wcd.nic.in', 'Childcare facilities for working mothers.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 600000, 18, 50, 'Daycare facilities for children below 6 years.'),
+('Hostel Scheme for Working Women', 70001, 'https://wcd.nic.in', 'Safe and affordable accommodation for working women.', 'FEMALE', 'ALL', 'URBAN', 'ALL', 'ALL', 'ALL', 'NO', 'EMPLOYED', 'NO', 'ALL', 0, 800000, 18, 50, 'Hostels in urban areas for working women.'),
+('PM Ujjwala Yojana', 70001, 'https://pmuy.gov.in', 'Free LPG connections for women from BPL families.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'YES', 'ALL', 0, 200000, 18, 60, 'Clean cooking fuel for rural women.'),
+('Nirbhaya Fund Scheme', 70001, 'https://wcd.nic.in', 'Financial support for initiatives ensuring women’s safety.', 'FEMALE', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'NO', 'ALL', 0, 800000, 18, 50, 'Supports women’s safety programs.'),
+('Poshan Abhiyan', 70001, 'https://poshanabhiyaan.gov.in', 'Nutritional support for pregnant women and children.', 'FEMALE', 'MARRIED', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'UNEMPLOYED', 'YES', 'ALL', 0, 300000, 0, 40, 'For pregnant women and children under 6 years.'),
+('PM CARES for Children Scheme', 70001, 'https://pmcaresforchildren.in', 'Support for children who lost parents due to COVID-19.', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'ALL', 'NO', 'ALL', 'YES', 'ALL', 0, 500000, 0, 18, 'Covers education and financial aid for COVID orphans.');

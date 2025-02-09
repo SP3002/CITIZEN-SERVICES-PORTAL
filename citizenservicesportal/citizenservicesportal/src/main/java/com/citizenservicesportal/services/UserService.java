@@ -83,5 +83,45 @@ public class UserService{
 	    	return null;
 	    			 
    	 }
+	    
+	    public boolean updateProfile(UsersDTO updatedUser, String aadharnumber) {
+	    	
+	    	Optional<UserDetails> user = userRepository.findByAadharNumber(aadharnumber);
+	    	
+	    	if( user != null ) {
+	    		UserDetails existingUser = (UserDetails) user.get();
+	    		    	
+	    		existingUser.setFirstName(updatedUser.getFirstName());
+	    		existingUser.setMiddleName(updatedUser.getMiddleName());
+	    		existingUser.setLastName(updatedUser.getLastName());
+	    		existingUser.setDateofbirth(updatedUser.getDateOfBirth());
+	    		existingUser.setGender(Gender.valueOf(updatedUser.getGender().toUpperCase()));
+	    		existingUser.setMaritalStatus(MaritalStatus.valueOf(updatedUser.getMaritalStatus().toUpperCase()) );
+	    		existingUser.setArea(Area.valueOf(updatedUser.getArea().toUpperCase()));
+	    		existingUser.setState(updatedUser.getState());
+	    		existingUser.setCaste(Caste.valueOf(updatedUser.getCaste().toUpperCase()));
+	    		existingUser.setDifferentlyAbled(YesNo.valueOf(updatedUser.getCaste().toUpperCase()));
+	    		existingUser.setDifferentlyAbledPercentage(updatedUser.getDifferentlyAbledPercentage());
+	    		existingUser.setMinority(YesNo.valueOf(updatedUser.getMinority().toUpperCase()));
+	    		existingUser.setStudent(YesNo.valueOf(updatedUser.getStudent().toUpperCase()));
+	    		existingUser.setCurrentEmployment(EmploymentStatus.valueOf(updatedUser.getCurrentEmployment().toUpperCase()));
+	    		existingUser.setBpl(YesNo.valueOf(updatedUser.getBpl().toUpperCase()) );
+	    		existingUser.setHardship(YesNo.valueOf(updatedUser.getHardship().toUpperCase()));
+	    		existingUser.setFamilyIncome(updatedUser.getFamilyIncome());
+	    		existingUser.setPincode(updatedUser.getPincode());
+	    		existingUser.setMobileNumber(updatedUser.getMobileNumber());
+//	    		existingUser.setAadharNumber(updatedUser.getAadharNumber());
+	    		existingUser.setEmail(updatedUser.getEmail());
+	    		existingUser.setPassword(updatedUser.getPassword());
+	    	
+	    		userRepository.save(existingUser);
+	    		
+	    		return true;
+	    	}
+
+	        
+	        return false;
+	    	
+	    }
 	    	
 }

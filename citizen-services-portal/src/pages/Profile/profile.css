@@ -1,0 +1,48 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 170px 20px;
+    /* border: solid; */
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    /* box-shadow: 0px 0px 10px  #7a9fdf; */
+    /* background: linear-gradient(#eabe8a, #ffff,#e4efe5); */
+    background: linear-gradient(#eabe8a, #ffff,#cff2d2);
+
+
+}
+
+.profile-container{
+    /* border: solid; */
+    text-align: center;
+    padding: 50px 80px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 8px #7a9fdf; */
+    box-shadow: 0 4px 8px #7a9fdf;
+    /* background-color: rgb(230, 243, 255); */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* color: white; */
+}
+
+
+.profile-details {
+    margin-bottom: 20px;
+    text-align: left;
+    padding-left: 1px;
+    
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #f44336; /* Red color for logout */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
